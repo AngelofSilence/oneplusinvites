@@ -26,7 +26,7 @@ import urllib2
 import re
 class MailReceiver(InboundMailHandler):
     def receive(self, mail_message): # When email gets received
-        url = re.findall("https://invites.oneplus.net/confirm/[\w]{0,34}", mail_message.original.as_string()) # Parse the verification link
+        url = re.findall("https://invites.oneplus.net/confirm/.*?(?=\.)", mail_message.original.as_string()) # Parse the verification link
         if url != None: # If the link is found
           urllib2.urlopen(url[0]) # Open the link (HTTP Get) and verify the account
           m = Mule(mail=mail_message.to, verificationlink = url[0]) # Save it in the database
