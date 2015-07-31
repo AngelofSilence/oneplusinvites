@@ -1,0 +1,21 @@
+application: oneplusinvites-1023
+version: 3
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+handlers:
+- url: /favicon\.ico
+  static_files: favicon.ico
+  upload: favicon\.ico
+  
+- url: .*
+  script: main.app
+  login: admin
+
+libraries:
+- name: webapp2
+  version: "2.5.2"
+
+inbound_services:
+- mail
